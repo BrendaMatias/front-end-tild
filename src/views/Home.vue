@@ -1,67 +1,72 @@
 <template>
   <div class="home">
-    <div v-if="loaded">
-      <div v-for="post in posts" class="posts">
-        <div class="logo">
+    <div class="grid">
+      <ul v-for="post in posts" class="posts">
+        <li class="img">
           <img :src="post.image" />
-        </div>
-        <li>
-          <ul class="title">{{ post.title }}</ul>
-          <ul class="content">{{ post.content }}</ul>
-          <ul class="created_at">{{ post.created_at }}</ul>
-          <ul class="updated_at">{{ post.updated_at }}</ul>
         </li>
-      </div>
+        <div class="divContent">
+          <li class="created_at">Recife, {{ post.created_at }}</li>
+          <li class="title">{{ post.title }}</li>
+          <li class="content">{{ post.content }}</li>
+        </div>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import fetchData from "@/mixins/fetchData.js";
 
 export default {
-  name: 'home',
-  mixins: [fetchData],
-    data() {
-        return {
-            posts: null
-        }
+  name: "Home",
+  data() {
+    return {
+      posts: null,
+    };
+  },
+  methods: {
+    getPosts() {
+      this.$store.dispatch("getPosts", this.$store.state.user.id).then(() => {
+        this.posts = this.$store.state.user.posts;
+      });
     },
-    methods: {
-    },
-    created() {
-        this.fetchData('posts');
-    }
-}
+  },
+  created() {
+    this.getPosts();
+  }
+};
 </script>
 
 <style lang="sass" scoped>
-.home 
-  text-aling: center
-
+.grid
+	max-width: 600px
+	margin: 0 auto
 img 
   width: 100%
-.home 
-  margin: 0 auto
-  width: 50%
-.home div
-  float: left
-.posts 
-  width: 250px 
-.title 
+ul
+  background: #fff
+  margin-bottom: 60px
+
+.divContent
+  padding: 20px 70px
+
+.title
+  cursor: pointer
+  font-size: 20px
+  color: rgb(64, 64, 66)
   text-transform: uppercase
-  padding-bottom: 15px
-
+  margin: 20px 0 30px 0
 .content
-  padding-bottom: 15px
-
+  font-size: 14px
+  color: rgb(177, 177, 177)
+  line-height: 1.5
+  margin-bottom: 15px
 .created_at
-  font-size: 12px
-  float: right
+  color: rgba(255, 51, 102, 0.9)
+  float: center
+  font-size: 11px
+  text-transform: uppercase
+  font-weight: 600
 .updated_at
-  font-size: 12px
-  float:left
-li 
-  margin: 40px
 </style>
 

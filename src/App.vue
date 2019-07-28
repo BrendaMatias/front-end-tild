@@ -1,19 +1,28 @@
 <template>
   <div id="app">
     <TheHeader />
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
+    <TheFooter />
   </div>
 </template>
 <script>
 import TheHeader from './components/TheHeader'
+import TheFooter from './components/TheFooter'
 
 export default {
   components: {
-    TheHeader
+    TheHeader,
+    TheFooter
   }
 }
 </script>
 
 <style lang="sass">
 @import '@/styles/style.sass'
+
+.container 
+  display: grid
+  margin: 80px 0 50px 0
 </style>
