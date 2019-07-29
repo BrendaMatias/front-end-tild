@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/contact">Contact</router-link>
-      <router-link v-if="$store.state.login" to="/user">{{name}}</router-link>
+      <router-link v-if="$store.state.login" :to="{name: 'posts'}">{{name}}</router-link>
       <router-link v-else to="/login" class="login">Login</router-link>
     </div>
   </header>

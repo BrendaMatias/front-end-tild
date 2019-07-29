@@ -35,17 +35,14 @@ export default {
     };
   },
   methods: {
-    async logar(email) {
+    async logar() {
       this.erros = [];
-      await this.$store.dispatch("getUser", email);
+      await this.$store.dispatch("getUser", this.login.email);
       if (this.$store.state.login) {
-        this.$router.push({ name: "user" });
+        this.$router.push({ name: "posts" });
       }
     }
   },
-  created() {
-    this.logar("lrico@example.net");
-  }
 };
 </script>
 

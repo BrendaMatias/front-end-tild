@@ -1,28 +1,29 @@
 <template>
   <transition>
-    <ul class="erro" v-if="erros.length > 0">
-      <li v-for="(erro, index) in erros" :key="index" v-html="erro"></li>
+    <ul class="sucess" v-if="successes.length > 0">
+      <li v-for="(sucess, index) in successes" :key="index" v-html="sucess"></li>
     </ul>
   </transition>
 </template>
 
 <script>
 export default {
-  name: "ErroNotificacao",
+  name: "SucessNotification",
   props: {
-    erros: Array
+    successes: Array
   }
 };
 </script>
 
 <style lang="sass" scoped>
-.erro 
+.sucess 
   margin: 30px auto 0 auto
 
-.erro li 
-  color: #fe2020
+.sucess li 
+  color: #228B22
   font-size: 16px
   line-height: 1.5
   font-weight: 600
   text-align: center
+
 </style>

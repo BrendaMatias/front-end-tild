@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { api } from "@/services.js";
 
 export default {
   name: "Home",
@@ -26,10 +27,16 @@ export default {
   },
   methods: {
     getPosts() {
-      this.$store.dispatch("getPosts", this.$store.state.user.id).then(() => {
-        this.posts = this.$store.state.user.posts;
-      });
-    },
+      this.produtos = null;
+      api.get(`/posts`).then(response => {
+        this.posts = response.data.data;
+      })
+    }
+  },
+  watch: {
+    getPosts() {
+
+    }
   },
   created() {
     this.getPosts();

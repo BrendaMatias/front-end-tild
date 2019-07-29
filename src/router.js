@@ -3,10 +3,13 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import User from './views/user/User.vue'
+import UserPosts from './views/user/UserPosts.vue'
+import UserProfile from './views/user/UserProfile.vue'
+import Post from './views/Post.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -26,9 +29,44 @@ export default new Router({
       component: Login
     },
     {
+      path: "/post/:id",
+      name: "post",
+      component: Post,
+      props: true
+    },
+    {
       path: '/user',
-      name: 'user',
-      component: User
+      component: User,
+      meta: {
+        login: true,
+      },
+      children: [
+        {
+          path: "posts",
+          name: "posts",
+          component: UserPosts
+        },
+        {
+          path: "profile",
+          name: "user-profile",
+          component: UserProfile
+        }
+      ]
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.login)) {
+    console.log(window.localStorage.token);
+    if(!window.localStorage.token) {
+      next('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
