@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <router-link class="post-img" :to="{name: 'post', params: {id: post.id}}">
-      <img v-if="post.image" :src="post.image" :alt="post.title">
+      <img v-if="post.image" :src="post.image" :alt="post.title" />
     </router-link>
     <div class="content">
       <h2 class="title">{{post.title}}</h2>
@@ -47,6 +47,7 @@ img
   text-transform: uppercase
   margin: 0 0 20px 0
 .content
+  max-width: 500px
   font-size: 14px
   color: rgb(177, 177, 177)
   line-height: 1.5

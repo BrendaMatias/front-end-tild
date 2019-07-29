@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { api } from '@/services.js'
+import Vue from "vue";
+import Vuex from "vuex";
+import { api } from "@/services.js";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   strict: true,
@@ -12,7 +12,7 @@ export default new Vuex.Store({
       name: "",
       email: "",
       password: "",
-      age: "",
+      age: ""
     },
     user: {
       name: "",
@@ -29,7 +29,7 @@ export default new Vuex.Store({
           created_at: "",
           updated_at: ""
         }
-      ], 
+      ]
     },
     posts: [
       {
@@ -54,29 +54,31 @@ export default new Vuex.Store({
       state.user = Object.assign(state.user, payload);
     },
     UPDATE_POSTS(state, payload) {
-      state.posts = (payload);
+      state.posts = payload;
     }
   },
   actions: {
     async getUser(context, emailLogin) {
-      /* Fazendo requisição dos usuários para saber o tamanho de páginas existentes.*/ 
+      /* Fazendo requisição dos usuários para saber o tamanho de páginas existentes.*/
       await api.get(`/users`).then(response => {
         context.commit("UPDATE_USERS", response.data);
-      })
+      });
 
       /* Loop para varredura das páginas existentes. */
-      for(var i = 0; i <= this.state.users.last_page; i++) {
+      for (var i = 0; i <= this.state.users.last_page; i++) {
         await api.get(`/users?page=${i.toString()}`).then(response => {
           context.commit("UPDATE_USERS", response.data);
         });
         /* Loop para varredura no array de usuários existente na página. */
-        for(var i2 = 0; i2 < this.state.users.data.length; i2++) {
-          /* Se o email inserido for igual ao email do array atual deverá atualizar o user atual e parar o loop */ 
-          if((this.state.users.data[i2].email) == emailLogin) {
-            await api.get(`/users/${this.state.users.data[i2].id}`).then(response => {
-              context.commit("UPDATE_USER", response.data);
-              console.log(this.state.user.posts);
-            });
+        for (var i2 = 0; i2 < this.state.users.data.length; i2++) {
+          /* Se o email inserido for igual ao email do array atual deverá atualizar o user atual e parar o loop */
+          if (this.state.users.data[i2].email == emailLogin) {
+            await api
+              .get(`/users/${this.state.users.data[i2].id}`)
+              .then(response => {
+                context.commit("UPDATE_USER", response.data);
+                console.log(this.state.user.posts);
+              });
             context.commit("UPDATE_LOGIN", true);
             window.localStorage.token = `Bearer ${this.state.user.id}`;
             return true;
@@ -88,7 +90,7 @@ export default new Vuex.Store({
       api.get(`/users/${payload}`).then(response => {
         context.commit("UPDATE_USER", response.data);
         console.log(this.state.user);
-      })
+      });
     },
     createUser(context) {
       return api.post("/users/");
@@ -109,7 +111,7 @@ export default new Vuex.Store({
             created_at: "",
             updated_at: ""
           }
-        ] 
+        ]
       });
       context.commit("UPDATE_USER", {
         name: "",
@@ -120,10 +122,10 @@ export default new Vuex.Store({
       window.localStorage.removeItem("token");
       context.commit("UPDATE_LOGIN", false);
     },
-    getPosts(contenxt) {
+    getPosts(context) {
       api.get(`/posts`).then(response => {
         context.commit("UPDATE_POSTS", response.data);
-      })
+      });
     }
   }
 });

@@ -37,12 +37,16 @@ export default {
   methods: {
     async logar() {
       this.erros = [];
+      /*const button = event.currentTarget;
+      console.log(button);
+      button.value = "Loading...";
+      button.setAttribute("disabled", "");*/
       await this.$store.dispatch("getUser", this.login.email);
       if (this.$store.state.login) {
         this.$router.push({ name: "posts" });
       }
     }
-  },
+  }
 };
 </script>
 

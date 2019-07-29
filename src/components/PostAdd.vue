@@ -10,15 +10,21 @@
         <input id="image" name="image" type="file" multiple ref="image" />
         <input class="btn" type="button" value="Add Post" @click.prevent="addPost" />
       </form>
+      <SucessNotification :successes="successes" />
     </div>
   </section>
 </template>
 
 <script>
 import { api } from "@/services.js";
+import SucessNotification from "@/components/SucessNotification.vue";
+import { mapFields } from "@/helpers.js";
 
 export default {
   name: "PostAdd",
+  components: {
+    SucessNotification
+  },
   data() {
     return {
       post: {
@@ -26,7 +32,8 @@ export default {
         content: "",
         image: "https://lorempixel.com/640/480/?20271",
         user_id: this.$store.state.user.id
-      }
+      },
+      successes: "[]"
     };
   },
   methods: {
@@ -39,7 +46,8 @@ export default {
 
       button.removeAttribute("disabled");
       button.value = "Add Post";
-    },
+      this.successes.push("Data updated successfully.");
+    }
   }
 };
 </script>

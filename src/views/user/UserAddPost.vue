@@ -34,7 +34,7 @@ export default {
 
       button.removeAttribute("disabled");
       button.value = "Add Post";
-    },
+    }
   }
 };
 </script>

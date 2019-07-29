@@ -2,7 +2,7 @@
   <section>
     <h2>Your posts</h2>
     <p v-if="noHavePosts" class="loading">Não tem itens...</p>
-    <p v-if="loading" class="loading">Loading...</p>
+    <LoadingData v-if="loading" />
     <transition-group v-else name="list" tag="ul">
       <li v-for="(post, index) in userPosts" :key="index">
         <PostItem :post="post">
@@ -11,31 +11,31 @@
         </PostItem>
       </li>
     </transition-group>
-    <p v-if="deleting">Deleting...</p>
   </section>
 </template>
 
 <script>
 import PostItem from "@/components/PostItem.vue";
+import LoadingData from "@/components/LoadingData.vue";
 import { mapState, mapActions } from "vuex";
 import { api } from "@/services.js";
 
 export default {
   name: "UserPosts",
   components: {
-    PostItem
+    PostItem,
+    LoadingData
   },
   data() {
     return {
       userPosts: this.$store.state.user.posts,
-      deleting: false,
       loading: false,
       noHavePosts: false
     };
   },
   methods: {
     deletePost(id) {
-      this.deleting = true;
+      this.loading = true;
 
       const confirm = window.confirm("Do you want to remove this post?");
       if (confirm) {
@@ -52,17 +52,16 @@ export default {
     async getPost() {
       await this.$store.dispatch("getUser", this.$store.state.user.email);
       this.userPosts = this.$store.state.user.posts;
-      if(this.userPosts.length <= 0) {
+      if (this.userPosts.length <= 0) {
         this.noHavePosts = true;
       }
       console.log(this.userPosts);
-      this.deleting = false;
       this.loading = false;
     }
   },
   watch: {
     getPost() {
-      this.deleting = true;
+      this.loading = true;
     }
   },
   created() {
@@ -73,6 +72,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+section 
+  width: 630px
 h2  
     text-align: center
     margin-bottom: 20px
