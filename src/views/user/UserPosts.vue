@@ -1,9 +1,8 @@
 <template>
   <section>
-    <h2>Add post</h2>
-    <PostsAdd />
     <h2>Your posts</h2>
-    <p v-if="loading">Loading...</p>
+    <p v-if="noHavePosts" class="loading">Não tem itens...</p>
+    <p v-if="loading" class="loading">Loading...</p>
     <transition-group v-else name="list" tag="ul">
       <li v-for="(post, index) in userPosts" :key="index">
         <PostItem :post="post">
@@ -17,7 +16,6 @@
 </template>
 
 <script>
-import PostsAdd from "@/components/PostAdd.vue";
 import PostItem from "@/components/PostItem.vue";
 import { mapState, mapActions } from "vuex";
 import { api } from "@/services.js";
@@ -25,7 +23,6 @@ import { api } from "@/services.js";
 export default {
   name: "UserPosts",
   components: {
-    PostsAdd,
     PostItem
   },
   data() {
@@ -33,6 +30,7 @@ export default {
       userPosts: this.$store.state.user.posts,
       deleting: false,
       loading: false,
+      noHavePosts: false
     };
   },
   methods: {
@@ -54,6 +52,10 @@ export default {
     async getPost() {
       await this.$store.dispatch("getUser", this.$store.state.user.email);
       this.userPosts = this.$store.state.user.posts;
+      if(this.userPosts.length <= 0) {
+        this.noHavePosts = true;
+      }
+      console.log(this.userPosts);
       this.deleting = false;
       this.loading = false;
     }
@@ -107,4 +109,10 @@ h2
     background: white
     color: black
     border: 2px solid rgba(255, 51, 102, 0.9)
+
+.loading 
+  width: 630px
+  font-size: 30px
+  text-align: center
+  margin-top: 60px
 </style>

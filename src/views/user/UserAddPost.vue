@@ -1,24 +1,19 @@
 <template>
   <section class="add-post">
-    <div>
-      <form>
-        <label for="title">Title</label>
-        <input id="title" name="title" type="text" v-model="post.title" />
-        <label for="content">Content</label>
-        <textarea id="content" name="content" v-model="post.content"></textarea>
-        <label for="image">Fotos</label>
-        <input id="image" name="image" type="file" multiple ref="image" />
-        <input class="btn" type="button" value="Add Post" @click.prevent="addPost" />
-      </form>
-    </div>
+    <h2>Add post</h2>
+    <PostsAdd />
   </section>
 </template>
 
 <script>
 import { api } from "@/services.js";
+import PostsAdd from "@/components/PostAdd.vue";
 
 export default {
-  name: "PostAdd",
+  name: "UserAddPost",
+  components: {
+    PostsAdd
+  },
   data() {
     return {
       post: {
@@ -89,4 +84,10 @@ textarea
 .btn:hover 
   background: rgba(255, 51, 102, 0.9)
 
+h2  
+  text-align: center
+  margin-bottom: 20px
+  font-weight: 600
+  padding-bottom: 15px
+  border-bottom: 2px solid rgba(255, 51, 102, 0.9)
 </style>

@@ -3,7 +3,10 @@
     <nav class="sidenav">
       <ul>
         <li>
-          <router-link :to="{name: 'posts'}">Posts</router-link>
+          <router-link :to="{name: 'posts'}">Your Posts</router-link>
+        </li>
+        <li>
+          <router-link :to="{name: 'add-posts'}">New Post</router-link>
         </li>
         <li>
           <router-link :to="{name: 'user-profile'}">Edit Profile</router-link>
@@ -47,7 +50,6 @@ export default {
     grid-template-columns: 1fr
     margin: 0px auto
   
-
 .sidenav a,
 .sidenav button 
   color: black

@@ -5,6 +5,7 @@ import Login from './views/Login.vue'
 import User from './views/user/User.vue'
 import UserPosts from './views/user/UserPosts.vue'
 import UserProfile from './views/user/UserProfile.vue'
+import UserAddPost from './views/user/UserAddPost.vue'
 import Post from './views/Post.vue'
 
 Vue.use(Router)
@@ -45,6 +46,11 @@ const router = new Router({
           path: "posts",
           name: "posts",
           component: UserPosts
+        },
+        {
+          path: "addposts",
+          name: "add-posts",
+          component: UserAddPost
         },
         {
           path: "profile",

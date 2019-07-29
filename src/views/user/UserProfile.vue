@@ -97,7 +97,7 @@ a
   float: right
 
 input 
-  width: 560px
+  width: 570px
   margin: 5px 0 20px 0
   border: 1px solid #d1d5da
   border-radius: 3px
