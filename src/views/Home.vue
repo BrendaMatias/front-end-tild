@@ -12,19 +12,18 @@
         <div class="grid" v-else>
           <div v-for="post in posts">
             <ul class="posts">
-              <router-link :to="{name: 'post', params: {id: post.id}}">
-                <li class="title">{{ post.title }}</li>
-                <li class="created_at">
-                  <span>by Ian Somerhalder</span>
-                  - Recife {{ post.created_at }}
-                </li>
-              </router-link>
+              <li class="title">
+                <router-link :to="{name: 'post', params: {id: post.id}}"><h2>{{ post.title }}</h2></router-link>
+              </li>
+              <li class="created_at">
+                <span>by Ian Somerhalder</span>
+                - Recife {{ post.created_at }}
+              </li>
+
               <li class="img">
                 <img :src="post.image" />
               </li>
-              <div class="divContent">
-                <li class="content">{{ post.content }}</li>
-              </div>
+              <li class="content">{{ post.content }}</li>
             </ul>
             <router-link class="btn-post" :to="{name: 'post', params: {id: post.id}}">Read More</router-link>
           </div>
@@ -102,16 +101,19 @@ section
 .grid
   margin-top: 80px
   max-width: 600px
+
+.grid 
+  div
+    border: 1px solid #eee
+    padding: 20px
+    margin-bottom: 80px
 img 
   width: 100%
 ul
   background: #fff
-  margin-bottom: 80px
-
-.divContent
+.content
   padding: 20px 70px
-
-.title
+.title a h2
   cursor: pointer
   font-size: 22px
   color: #000
@@ -177,11 +179,14 @@ span
   border: none
   background: $blue
   border-radius: 4px
-  padding: 4px 20px  
+  padding: 15px 
   color: white
-
+  width: 100%
+  display: block
+  text-align: center
 .btn-post:hover
   background: rgb(244, 78, 78)
+
 
 </style>
 

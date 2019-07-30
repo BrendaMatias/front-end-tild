@@ -8,6 +8,7 @@
         <PostItem :post="post">
           <p>{{post.content}}</p>
           <button @click="deletePost(post.id)" class="delete">Delete</button>
+          <button @click="updatePost(post.id)" class="update">Update</button>
         </PostItem>
       </ul>
     </transition-group>
