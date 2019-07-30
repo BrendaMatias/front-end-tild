@@ -10,8 +10,8 @@
           <button @click="updatePost(post.id)" class="update">Update</button>
         </PostItem>
       </ul>
-      <SucessNotification :successes="successes"/>
-      <ErroNotification :erros="erros"/>
+      <SucessNotification :successes="successes" />
+      <ErroNotification :erros="erros" />
     </transition-group>
   </section>
 </template>
@@ -59,13 +59,16 @@ export default {
       var body = {
         title: this.userPosts[id].post.title,
         content: this.userPosts[id].post.content
-      }
-      api.put(`/posts/${id}/`, body)
+      };
+      api
+        .put(`/posts/${id}/`, body)
         .then(() => {
           this.successes.push("Data updated successfully.");
         })
         .catch(error => {
-          this.erros.push("An error occured while trying to update the user.<br/>Try again!");
+          this.erros.push(
+            "An error occured while trying to update the user.<br/>Try again!"
+          );
         });
       this.loading = false;
     },
@@ -98,11 +101,11 @@ section
   width: 800px
   margin: 0 auto
 h2  
-    text-align: center
-    margin-bottom: 20px
-    font-weight: 600
-    padding-bottom: 15px
-    border-bottom: 2px solid $blue
+  text-align: center
+  margin-bottom: 20px
+  font-weight: 600
+  padding-bottom: 15px
+  border-bottom: 2px solid $blue
 
 .list-enter,
 .list-leave-to 

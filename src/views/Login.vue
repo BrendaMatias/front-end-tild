@@ -9,8 +9,8 @@
           Password
           <a href="/" target="_blank" class="forgetPassword">Forgot password?</a>
         </label>
-        <input type="password" name="password" id="password" v-model="login.password" />
-        <button v-if="!loading" @click.prevent="logar">Sign in</button>
+        <input type="password" name="password" id="password" v-model="login.password" required />
+        <input v-if="!loading" @click.prevent="logar" value="Sign in" type="submit" class="btn" />
         <LoadingData v-else class="loading" />
       </form>
       <SignUp />
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$blue: #00b8e4
+@import '@/styles/style.sass'
 
 form 
   display: grid
@@ -73,11 +73,6 @@ h1
   font-weight: 300
   text-transform: uppercase
   margin-bottom: 20px
-label 
-  font-size: 14px
-  color: #24292e
-  line-height: 1.5
-  font-weight: 600
 
 a
   color: #0366d6
@@ -88,25 +83,12 @@ a
 
 input 
   width: 260px
-  margin: 5px 0 20px 0
-  border: 1px solid #d1d5da
-  border-radius: 3px
-  font-size: 14px
-  line-height: 20px
-  padding: 6px 8px
-button 
-  background: rgba($blue, 0.7)
-  border-radius: 3px
-  border: 2px solid transparent
-  color: white
-  cursor: pointer
-  font-size: 14px
-  font-weight: 600
-  line-height: 20px
-  padding: 6px 0
 
-button:hover 
+.btn 
   background: $blue
+
+.btn:hover 
+  background: $blue-hover
 
 .loader 
   margin: 0 auto

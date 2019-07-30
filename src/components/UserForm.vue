@@ -1,13 +1,13 @@
 <template>
   <form>
     <label for="name">Nome</label>
-    <input id="name" name="name" type="text" v-model="name">
+    <input id="name" name="name" type="text" v-model="name" />
     <label for="email">Email</label>
-    <input id="email" name="email" type="email" v-model="email">
+    <input id="email" name="email" type="email" v-model="email" />
     <label for="password">Senha</label>
-    <input id="password" name="password" type="password" v-model="password">
+    <input id="password" name="password" type="password" v-model="password" />
     <label for="age">Idade</label>
-    <input id="age" name="age" type="number" v-model="age">
+    <input id="age" name="age" type="number" v-model="age" />
     <div class="button">
       <slot></slot>
     </div>
@@ -20,12 +20,7 @@ import { mapFields } from "@/helpers.js";
 export default {
   computed: {
     ...mapFields({
-      fields: [
-        "name",
-        "email",
-        "password",
-        "age"
-      ],
+      fields: ["name", "email", "password", "age"],
       base: "user",
       mutation: "UPDATE_USER"
     })

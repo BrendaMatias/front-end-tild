@@ -16,14 +16,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.sucess 
-  margin: 30px auto 0 auto
+@import '@/styles/style.sass'
 
 .sucess li 
-  color: #228B22
-  font-size: 16px
-  line-height: 1.5
-  font-weight: 600
-  text-align: center
-
+  color: $green
 </style>

@@ -16,13 +16,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.erro 
-  margin: 30px auto 0 auto
+@import '@/styles/style.sass'
 
 .erro li 
-  color: #fe2020
-  font-size: 16px
-  line-height: 1.5
-  font-weight: 600
-  text-align: center
+  color: $red
 </style>

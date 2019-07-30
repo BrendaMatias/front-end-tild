@@ -6,7 +6,7 @@
           <p v-if="noHavePosts" class="loading">
             You don't have any posts yet :(
             <br />Click
-            <router-link class="click-here" :to="{name: 'addposts'}">here </router-link>to create one!
+            <router-link class="click-here" :to="{name: 'addposts'}">here</router-link>to create one!
           </p>
         </div>
         <LoadingData v-if="loading" />
@@ -91,8 +91,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
-$blue: #00b8e4
+@import '@/styles/style.sass'
 
 section
   margin: 0 auto
@@ -116,27 +115,25 @@ ul
   background: #fff
 .content
   padding: 15px 0
+
 .title a h2
   cursor: pointer
   font-size: 28px
   color: #000
-  text-transform: uppercase
   font-weight: 600
+
 .content
   text-align: left
-  font-size: 14px
-  color: rgb(177, 177, 177)
-  line-height: 1.5
   margin-bottom: 15px
   word-wrap: break-word
+
 span
   color: $blue
+  
 .created_at
   color: #777
   padding: 5px 0 25px 0
   float: center
-  font-size: 11px
-  font-weight: 600
 
 .gif
   margin: 40px auto 100px auto
