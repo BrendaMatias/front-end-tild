@@ -1,7 +1,7 @@
 <template>
   <section>
     <h2>Your posts</h2>
-    <p v-if="noHavePosts" class="loading">You don't have posts.</p>
+    <p v-if="noHavePosts" class="loading">You don't have any posts yet.</p>
     <LoadingData v-if="loading" />
     <transition-group v-else name="list" tag="ul">
       <ul v-for="(post, index) in userPosts" :key="index">
@@ -10,6 +10,8 @@
           <button @click="updatePost(post.id)" class="update">Update</button>
         </PostItem>
       </ul>
+      <SucessNotification :successes="successes"/>
+      <ErroNotification :erros="erros"/>
     </transition-group>
   </section>
 </template>
@@ -30,7 +32,9 @@ export default {
     return {
       userPosts: this.$store.state.user.posts,
       loading: false,
-      noHavePosts: false
+      noHavePosts: false,
+      erros: [],
+      successes: []
     };
   },
   methods: {
@@ -48,6 +52,22 @@ export default {
             console.log(error.reponse);
           });
       }
+    },
+    updatePost(id) {
+      this.loading = true;
+      this.erros = [];
+      var body = {
+        title: this.userPosts[id].post.title,
+        content: this.userPosts[id].post.content
+      }
+      api.put(`/posts/${id}/`, body)
+        .then(() => {
+          this.successes.push("Data updated successfully.");
+        })
+        .catch(error => {
+          this.erros.push("An error occured while trying to update the user.<br/>Try again!");
+        });
+      this.loading = false;
     },
     async getPost() {
       await this.$store.dispatch("getUser", this.$store.state.user.email);
@@ -103,16 +123,14 @@ h2
   border-radius: 4px
   padding: 4px 20px  
   color: white
-  position: absolute
 .delete 
-  top: 27px
+  position: absolute
+  top: 0px
   right: 0px
   background: rgb(244, 78, 78)
 .delete:hover
   background: rgb(217, 79, 79) 
 .update
-  top: 0px
-  right: 0px
   background: #00b300
 .update:hover 
   background: #009900

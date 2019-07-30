@@ -4,8 +4,9 @@
       <div class="posts">
         <div class="no-have-posts">
           <p v-if="noHavePosts" class="loading">
-            You don't have posts :(
-            <br />Add a new post to the menu.
+            You don't have any posts yet :(
+            <br />Click
+            <router-link class="click-here" :to="{name: 'addposts'}">here </router-link>to create one!
           </p>
         </div>
         <LoadingData v-if="loading" />
@@ -13,11 +14,13 @@
           <div v-for="post in posts">
             <ul class="posts">
               <li class="title">
-                <router-link :to="{name: 'post', params: {id: post.id}}"><h2>{{ post.title }}</h2></router-link>
+                <router-link :to="{name: 'post', params: {id: post.id}}">
+                  <h2>{{ post.title }}</h2>
+                </router-link>
               </li>
               <li class="created_at">
-                <span>by Ian Somerhalder</span>
-                - Recife {{ post.created_at }}
+                <span>by {{name}}</span>
+                - Recife, {{ post.created_at }}
               </li>
 
               <li class="img">
@@ -166,11 +169,16 @@ span
 
 .user-image img
   width: 100%
-
+.no-have-posts
+  margin-top: 150px
 .no-have-posts p
   text-align: center
   font-size: 28px
   line-height: 1.5
+.click-here 
+  color: $blue
+.click-here:hover
+  color: #008fb3
 
 .btn-post 
   font-size: 12px
@@ -187,7 +195,6 @@ span
   text-align: center
 .btn-post:hover
   background: #008fb3
-
 
 </style>
 

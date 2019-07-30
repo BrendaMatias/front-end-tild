@@ -60,6 +60,7 @@ form
 .login 
   max-width: 600px
   margin: 0 auto
+  margin-top: 80px
 
 .login-body
   border: 1px solid #d1d5da

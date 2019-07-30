@@ -1,11 +1,19 @@
 <template>
   <header>
-      <router-link class="blog" to="/">
-        <img src="../assets/blogging.svg">
-         <span class="blog-text">Blog</span><span class="color-blog">.</span>
-      </router-link>
+    <router-link class="blog" to="/">
+      <img src="../assets/blogging.svg" />
+      <span class="blog-text">Blog</span>
+      <span class="color-blog">.</span>
+    </router-link>
     <div>
-      <router-link v-if="$store.state.login" :to="{name: 'posts'}">{{name}}</router-link>
+      <div class="user-image" v-if="$store.state.login">
+        <div>
+        <img
+          src="https://s-media-cache-ak0.pinimg.com/736x/92/80/c1/9280c111e34752405eb524d4ed0750e6--ian-somerholder-beautiful-men.jpg"
+        />
+        </div>
+        <router-link class="user" :to="{name: 'posts'}">{{name}}</router-link>
+      </div>
       <router-link v-else to="/login" class="login">Login</router-link>
     </div>
   </header>
@@ -53,19 +61,29 @@ header div
 header div a
   color: white
   padding-bottom: 1px
-  border-bottom: 2px solid transparent
 .login
   background: $blue
   border-radius: 10px
   padding: 3px 20px  
-  border: 2px solid transparent
 .login:hover
-  background: white
-  color: black
-  border: 2px solid $blue
+  background: #008fb3
 
-header div a:hover,
-a .router-link-exact-active 
+.user:hover,
+.user .router-link-exact-active 
   border-bottom: 2px solid  $blue
-
+  
+.user-image
+  align-itens: center
+  justify-content: center
+  display: flex
+.user-image div
+  margin: auto
+  width: 60px
+  height: 60px
+  border-radius: 50%
+  overflow: hidden
+.user-image a
+  display: inline-block
+.user-image img
+  width: 100%
 </style>

@@ -6,8 +6,8 @@
           <img v-if="post.image" :src="post.image" :alt="post.title" />
         </router-link>
         <div class="content">
-          <input type="title" name="title" id="title" v-model="post.title" class="title"  />
-          <textarea id="content" name="content" v-model="post.content" class="content"></textarea>
+          <input type="title" name="title" id="title" v-model="post.title" placeholder="Enter title" class="title"  />
+          <textarea id="content" name="content" v-model="post.content" placeholder="Enter text" class="content"></textarea>
           <slot></slot>
         </div>
       </div>
@@ -62,14 +62,14 @@ img
   font-size: 14px
   color: rgb(177, 177, 177)
   line-height: 1.5
-
+  display: block
 .created_at
   color: rgba($blue, 0.9)
   text-align: right
   font-size: 11px
   font-weight: 600
 input, textarea
-  width: 300px
+  width: 350px
   margin: 5px 0 20px 0
   border: 1px solid #d1d5da
   border-radius: 3px
