@@ -73,9 +73,9 @@ $blue: #00b8e4
   width: 100%
   text-align: center
   cursor: pointer
-  background: rgba(244, 78, 78, 1)
+  background: rgb(217, 79, 79)
   color: rgba(255,255,255, 0.8)
 
 .sidenav button:hover 
-  background: rgb(217, 79, 79)
+  background: rgb(244, 78, 78)
 </style>

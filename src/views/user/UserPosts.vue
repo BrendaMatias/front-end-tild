@@ -104,13 +104,13 @@ h2
     right: 0px
     cursor: pointer
     border: none
-    background: rgba(244, 78, 78, 1)
+    background: rgb(217, 79, 79)
     border-radius: 4px
     padding: 4px 20px  
     color: white
 
 .delete:hover
-  background: rgb(217, 79, 79)
+  background: rgb(244, 78, 78)
 
 .loading 
   width: 800px
