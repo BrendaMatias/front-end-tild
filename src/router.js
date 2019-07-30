@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
+import SignUp from './views/SignUp.vue'
 import User from './views/user/User.vue'
 import UserPosts from './views/user/UserPosts.vue'
 import UserProfile from './views/user/UserProfile.vue'
@@ -26,6 +27,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },    
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp
     },
     {
       path: "/post/:id",

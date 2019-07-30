@@ -1,14 +1,14 @@
 <template>
   <form>
-    <label for="name">Nome</label>
+    <label for="name">Name</label>
     <input id="name" name="name" type="text" v-model="name" />
-    <label for="email">Email</label>
+    <label for="email">E-mail</label>
     <input id="email" name="email" type="email" v-model="email" />
-    <label for="password">Senha</label>
+    <label for="password">Password</label>
     <input id="password" name="password" type="password" v-model="password" />
-    <label for="age">Idade</label>
+    <label for="age">Age</label>
     <input id="age" name="age" type="number" v-model="age" />
-    <div class="button">
+    <div>
       <slot></slot>
     </div>
   </form>
@@ -28,15 +28,14 @@ export default {
 };
 </script>
 
-<style scoped>
-form {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  align-items: center;
-}
+<style lang="sass" scoped>
+@import '@/styles/style.sass'
 
-.button {
-  grid-column: 2;
-  margin-top: 10px;
-}
+form 
+  margin-top: 30px
+  display: grid
+  text-align: left
+input 
+  width: 260px
+
 </style>

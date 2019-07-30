@@ -9,11 +9,11 @@ export const api = {
     return axiosInstance.get(endpoint);
   },
   post(endpoint, body) {
-    console.log('fazendo');
+    console.log(endpoint);
     return axiosInstance.post(endpoint, body);
   }
   ,put(endpoint, body) {
-    console.log(body);
+    console.log(endpoint + body);
     return axiosInstance.put(endpoint, body);
   },
   delete(endpoint) {

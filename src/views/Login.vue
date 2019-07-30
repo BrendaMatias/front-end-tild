@@ -7,25 +7,27 @@
         <input type="email" name="email" id="email" v-model="login.email" required />
         <label for="password">
           Password
-          <a href="/" target="_blank" class="forgetPassword">Forgot password?</a>
+          <a href="/login" target="_blank" class="forgetPassword">Forgot password?</a>
         </label>
         <input type="password" name="password" id="password" v-model="login.password" required />
         <input v-if="!loading" @click.prevent="logar" value="Sign in" type="submit" class="btn" />
         <LoadingData v-else class="loading" />
+        <p class="signUp-text">
+          New to Blog?
+          <router-link to="/signup" class="login">Create an account.</router-link>
+        </p>
       </form>
-      <SignUp />
     </div>
   </section>
 </template>
 
 <script>
-import SignUp from "@/components/SignUp.vue";
 import LoadingData from "../components/LoadingData.vue";
+import { mapFields } from "@/helpers.js";
 
 export default {
   name: "Login",
   components: {
-    SignUp,
     LoadingData
   },
   data() {
@@ -57,26 +59,12 @@ export default {
 form 
   display: grid
 
-.login 
-  max-width: 600px
-  margin: 0 auto
-  margin-top: 80px
-
-.login-body
-  border: 1px solid #d1d5da
-  border-radius: 3px
-  padding: 30px
-
 h1 
   text-align: center
   font-size: 24px
   font-weight: 300
   text-transform: uppercase
   margin-bottom: 20px
-
-a
-  color: #0366d6
-  font-size: 12px
 
 .forgetPassword 
   float: right
@@ -90,6 +78,7 @@ input
 .btn:hover 
   background: $blue-hover
 
+/* Botão de carregamento */
 .loader 
   margin: 0 auto
   border: 8px solid #f3f3f3
@@ -103,4 +92,18 @@ input
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 
+
+/* SignUp */ 
+.signUp-text 
+  margin-top: 30px
+  padding-top: 20px
+  text-align: center
+  font-size: 12px
+p
+  border-top: 1px solid #d1d5da
+.signUp-text a
+  color: #0366d6
+  cursor: pointer
+.signUp-text a:hover
+  text-decoration: underline
 </style>
