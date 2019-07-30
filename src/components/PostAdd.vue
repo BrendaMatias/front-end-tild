@@ -11,6 +11,7 @@
         <input class="btn" type="button" value="Add Post" @click.prevent="addPost" />
       </form>
       <SucessNotification :successes="successes" />
+      <ErroNotification :erros="erros" />
     </div>
   </section>
 </template>
@@ -33,6 +34,7 @@ export default {
         image: "https://lorempixel.com/640/480/?20271",
         user_id: this.$store.state.user.id
       },
+      erros: [],
       successes: []
     };
   },
@@ -42,11 +44,17 @@ export default {
       button.value = "Adicionando...";
       button.setAttribute("disabled", "");
 
-      await api.post("/posts/", this.post);
+      await api.post("/posts/", this.post).then(() => {
+          this.successes.push("Successfully posted!");
+        }).catch(error => {
+          this.erros.push("An error has occurred.<br/>Try again!");
+        });
+
+      this.post.title = "";
+      this.post.content = "";
 
       button.removeAttribute("disabled");
       button.value = "Add Post";
-      this.successes.push("Post successfully added!");
     }
   }
 };
@@ -74,5 +82,4 @@ textarea
 
 .btn:hover 
   background: $blue-hover
-
 </style>

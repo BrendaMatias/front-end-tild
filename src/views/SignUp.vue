@@ -62,9 +62,12 @@ export default {
       console.log(this.user);
       try {
         await api.post("/users/", this.user);
-        await this.$store.dispatch("getUsuario", this.user.email);
-        this.loading = false;
-        this.successes.push("User successfully registered!");
+        await this.$store.dispatch("getUsuario", this.user.email).then(() => {
+          this.loading = false;
+          this.successes.push("User successfully registered!");
+        }).catch(error => {
+          this.erros.push("An error occured while trying to register the user.<br/>Try again!");
+        });
         this.user = {
             name: "",
             email: "",
@@ -72,7 +75,7 @@ export default {
             age: ""
         }
       } catch (error) {
-        console.log(error);
+        this.erros.push("An error occured while trying to register the user.<br/>Try again!");
       }
     }
   }
@@ -89,7 +92,7 @@ h1
   margin-bottom: 20px
 
 form
-    display: grid
+  display: grid
 
 input 
   width: 260px

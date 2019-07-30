@@ -66,7 +66,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$blue: #00b8e4
+@import '@/styles/style.sass'
+
 form 
   display: grid
 
@@ -79,19 +80,13 @@ form
     padding: 30px
 
 h2  
-    text-align: center
-    margin-bottom: 20px
-    font-weight: 600
-    padding-bottom: 15px
-    border-bottom: 2px solid $blue
-label 
-  font-size: 14px
-  color: #24292e
-  line-height: 1.5
+  text-align: center
+  margin-bottom: 20px
   font-weight: 600
+  padding-bottom: 15px
+  border-bottom: 2px solid $blue
 
 a
-  color: #0366d6
   font-size: 12px
 
 .forgetPassword 
@@ -99,24 +94,10 @@ a
 
 input 
   width: 570px
-  margin: 5px 0 20px 0
-  border: 1px solid #d1d5da
-  border-radius: 3px
-  font-size: 14px
-  line-height: 20px
-  padding: 6px 8px
+
 button 
-  background: rgba($blue, 0.7)
-  border-radius: 3px
-  border: 2px solid transparent
-  color: white
-  cursor: pointer
-  font-size: 14px
-  font-weight: 600
-  line-height: 20px
-  padding: 6px 0
+  background: $blue
 
 button:hover 
-  background: rgba($blue, 0.9)
-
+  background: $blue-hover
 </style>

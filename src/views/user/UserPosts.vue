@@ -49,7 +49,7 @@ export default {
             this.getPost();
           })
           .catch(error => {
-            console.log(error.reponse);
+            "An error occurred while trying to delete the post. <br/> Try again!";
           });
       }
     },
@@ -67,7 +67,7 @@ export default {
         })
         .catch(error => {
           this.erros.push(
-            "An error occured while trying to update the user.<br/>Try again!"
+            "An error occured while trying to update the post.<br/>Try again!"
           );
         });
       this.loading = false;
@@ -78,7 +78,6 @@ export default {
       if (this.userPosts.length <= 0) {
         this.noHavePosts = true;
       }
-      console.log(this.userPosts);
       this.loading = false;
     }
   },
@@ -95,11 +94,12 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$blue: #00b8e4
+@import '@/styles/style.sass'
 
 section 
   width: 800px
   margin: 0 auto
+
 h2  
   text-align: center
   margin-bottom: 20px
@@ -120,28 +120,26 @@ h2
 .delete, .update
   font-size: 12px
   text-transform: uppercase
-  font-weight: 600
-  cursor: pointer
-  border: none
-  border-radius: 4px
   padding: 4px 20px  
-  color: white
+
 .delete 
   position: absolute
   top: 0px
   right: 0px
-  background: rgb(244, 78, 78)
+  background: $red-light
+
 .delete:hover
-  background: rgb(217, 79, 79) 
+  background: $red-hover
+
 .update
-  background: #00b300
+  background: $green
+
 .update:hover 
-  background: #009900
+  background: $green-hover
+
 .loading 
   width: 800px
   font-size: 30px
   text-align: center
   margin-top: 60px
-
-
 </style>

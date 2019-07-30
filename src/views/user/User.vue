@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$blue: #00b8e4
+@import '@/styles/style.sass'
 
 .user 
   display: grid
@@ -53,9 +53,6 @@ $blue: #00b8e4
 .sidenav a,
 .sidenav button 
   color: black
-  font-size: 14px
-  font-weight: 600
-  line-height: 20px
   padding: 15px
   display: block
   background: #f4f7fc
@@ -67,16 +64,13 @@ $blue: #00b8e4
   background: rgba($blue, 0.9)
   color: #fff
 
-
 .sidenav button 
-  border: none
+  color: white
   width: 100%
   text-align: center
-  cursor: pointer
-  background: rgb(244, 78, 78)
-  color: white
+  background: $red-light
   margin-top: 50px
 
 .sidenav button:hover 
-  background: rgb(217, 79, 79)
+  background: $red-hover
 </style>

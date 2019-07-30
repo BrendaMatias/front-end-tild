@@ -8,9 +8,9 @@
     <div>
       <div class="user-image" v-if="$store.state.login">
         <div>
-        <img
-          src="https://s-media-cache-ak0.pinimg.com/736x/92/80/c1/9280c111e34752405eb524d4ed0750e6--ian-somerholder-beautiful-men.jpg"
-        />
+          <img
+            src="https://s-media-cache-ak0.pinimg.com/736x/92/80/c1/9280c111e34752405eb524d4ed0750e6--ian-somerholder-beautiful-men.jpg"
+          />
         </div>
         <router-link class="user" :to="{name: 'posts'}">{{name}}</router-link>
       </div>
@@ -73,17 +73,19 @@ header div a
   border-bottom: 2px solid  $blue
   
 .user-image
-  align-itens: center
+  align-items: center
   justify-content: center
   display: flex
 .user-image div
   margin: auto
-  width: 60px
-  height: 60px
+  width: 45px
+  height: 45px
   border-radius: 50%
   overflow: hidden
 .user-image a
+  margin-left: 20px
   display: inline-block
+  border-bottom: 2px solid transparent
 .user-image img
   width: 100%
 </style>

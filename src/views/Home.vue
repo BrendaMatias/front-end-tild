@@ -22,13 +22,12 @@
                 <span>by {{name}}</span>
                 - Recife, {{ post.created_at }}
               </li>
-
               <li class="img">
                 <img :src="post.image" />
               </li>
               <li class="content">{{ post.content }}</li>
             </ul>
-            <router-link class="btn-post" :to="{name: 'post', params: {id: post.id}}">Read More</router-link>
+            <router-link class="btn" :to="{name: 'post', params: {id: post.id}}">Read More</router-link>
           </div>
         </div>
       </div>
@@ -92,52 +91,7 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/styles/style.sass'
-
-section
-  margin: 0 auto
-  align-itens: center
-.home
-  display: grid
-  grid-template-columns: 700px 340px
-  grid-gap: 30px
-.grid
-  margin-top: 80px
-  max-width: 600px
-
-.grid 
-  div
-    border: 1px solid #eee
-    padding: 20px
-    margin-bottom: 80px
-img 
-  width: 100%
-ul
-  background: #fff
-.content
-  padding: 15px 0
-
-.title a h2
-  cursor: pointer
-  font-size: 28px
-  color: #000
-  font-weight: 600
-
-.content
-  text-align: left
-  margin-bottom: 15px
-  word-wrap: break-word
-
-span
-  color: $blue
-  
-.created_at
-  color: #777
-  padding: 5px 0 25px 0
-  float: center
-
-.gif
-  margin: 40px auto 100px auto
-  width: 100px
+@import '@/styles/post.sass'
 
 .about
   background: $blue
@@ -147,16 +101,19 @@ span
   align-itens: center
   max-width: 300px
   max-height: 480px
+
 .about h4 
   margin-top: 10px
   padding: 5px
   font-size: 16px
   color: white
   border-bottom: 2px solid white
+
 .about h5
   margin-top: 12px
   font-size: 12px
   color: white
+
 .user-image
   margin: auto
   width: 100px
@@ -166,32 +123,30 @@ span
 
 .user-image img
   width: 100%
+  
 .no-have-posts
   margin-top: 150px
+
 .no-have-posts p
   text-align: center
   font-size: 28px
   line-height: 1.5
+
 .click-here 
   color: $blue
-.click-here:hover
-  color: #008fb3
 
-.btn-post 
+.click-here:hover
+  color: $blue-hover
+
+.btn 
   font-size: 12px
   text-transform: uppercase
-  font-weight: 600
-  cursor: pointer
-  border: none
   background: $blue
-  border-radius: 4px
   padding: 15px 
-  color: white
-  width: 100%
   display: block
   text-align: center
-.btn-post:hover
-  background: #008fb3
 
+.btn:hover
+  background: $blue-hover
 </style>
 
