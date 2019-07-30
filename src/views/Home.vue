@@ -112,19 +112,20 @@ img
 ul
   background: #fff
 .content
-  padding: 20px 70px
+  padding: 15px 0
 .title a h2
   cursor: pointer
-  font-size: 22px
+  font-size: 28px
   color: #000
   text-transform: uppercase
   font-weight: 600
 .content
-  text-align: right
+  text-align: left
   font-size: 14px
   color: rgb(177, 177, 177)
   line-height: 1.5
   margin-bottom: 15px
+  word-wrap: break-word
 span
   color: $blue
 .created_at
@@ -185,7 +186,7 @@ span
   display: block
   text-align: center
 .btn-post:hover
-  background: rgb(244, 78, 78)
+  background: #008fb3
 
 
 </style>

@@ -7,7 +7,7 @@
         </router-link>
         <div class="content">
           <input type="title" name="title" id="title" v-model="post.title" class="title"  />
-          <h2 class="title">{{post.title}}</h2>
+          <textarea id="content" name="content" v-model="post.content" class="content"></textarea>
           <slot></slot>
         </div>
       </div>
@@ -68,4 +68,16 @@ img
   text-align: right
   font-size: 11px
   font-weight: 600
+input, textarea
+  width: 300px
+  margin: 5px 0 20px 0
+  border: 1px solid #d1d5da
+  border-radius: 3px
+  font-size: 14px
+  line-height: 20px
+  padding: 6px 8px
+
+textarea
+  resize: none
+  height: 80px
 </style>

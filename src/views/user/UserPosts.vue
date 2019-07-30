@@ -6,7 +6,6 @@
     <transition-group v-else name="list" tag="ul">
       <ul v-for="(post, index) in userPosts" :key="index">
         <PostItem :post="post">
-          <p>{{post.content}}</p>
           <button @click="deletePost(post.id)" class="delete">Delete</button>
           <button @click="updatePost(post.id)" class="update">Update</button>
         </PostItem>
@@ -95,27 +94,33 @@ h2
 .list-leave-active 
   transition: all 0.3s
 
-
+.delete, .update
+  font-size: 12px
+  text-transform: uppercase
+  font-weight: 600
+  cursor: pointer
+  border: none
+  border-radius: 4px
+  padding: 4px 20px  
+  color: white
+  position: absolute
 .delete 
-    font-size: 12px
-    text-transform: uppercase
-    font-weight: 600
-    position: absolute
-    top: 0px
-    right: 0px
-    cursor: pointer
-    border: none
-    background: rgb(244, 78, 78)
-    border-radius: 4px
-    padding: 4px 20px  
-    color: white
-
+  top: 27px
+  right: 0px
+  background: rgb(244, 78, 78)
 .delete:hover
   background: rgb(217, 79, 79) 
-
+.update
+  top: 0px
+  right: 0px
+  background: #00b300
+.update:hover 
+  background: #009900
 .loading 
   width: 800px
   font-size: 30px
   text-align: center
   margin-top: 60px
+
+
 </style>

@@ -75,6 +75,7 @@ $blue: #00b8e4
   cursor: pointer
   background: rgb(244, 78, 78)
   color: rgba(255,255,255, 0.8)
+  margin-top: 50px
 
 .sidenav button:hover 
   background: rgb(217, 79, 79)
