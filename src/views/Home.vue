@@ -3,25 +3,31 @@
     <div class="home">
       <div class="posts">
         <div class="no-have-posts">
-          <p v-if="noHavePosts" class="loading">You don't have posts :(<br/>Add a new post to the menu.</p>
+          <p v-if="noHavePosts" class="loading">
+            You don't have posts :(
+            <br />Add a new post to the menu.
+          </p>
         </div>
         <LoadingData v-if="loading" />
         <div class="grid" v-else>
-          <ul v-for="post in posts" class="posts">
-            <router-link :to="{name: 'post', params: {id: post.id}}">
-              <li class="title">{{ post.title }}</li>
-            </router-link>
-            <li class="img">
-              <img :src="post.image" />
-            </li>
-            <div class="divContent">
-              <li class="content">{{ post.content }}</li>
-            </div>
-            <li class="created_at">
-              <span>by Ian Somerhalder</span>
-              - Recife {{ post.created_at }}
-            </li>
-          </ul>
+          <div v-for="post in posts">
+            <router-link class="btn-post" :to="{name: 'post', params: {id: post.id}}">Read More</router-link>
+            <ul class="posts">
+              <router-link :to="{name: 'post', params: {id: post.id}}">
+                <li class="title">{{ post.title }}</li>
+                <li class="created_at">
+                  <span>by Ian Somerhalder</span>
+                  - Recife {{ post.created_at }}
+                </li>
+              </router-link>
+              <li class="img">
+                <img :src="post.image" />
+              </li>
+              <div class="divContent">
+                <li class="content">{{ post.content }}</li>
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="about">
@@ -110,9 +116,9 @@ ul
   font-size: 22px
   color: #000
   text-transform: uppercase
-  margin-bottom: 30px
   font-weight: 600
 .content
+  text-align: right
   font-size: 14px
   color: rgb(177, 177, 177)
   line-height: 1.5
@@ -160,5 +166,21 @@ span
   text-align: center
   font-size: 28px
   line-height: 1.5
+
+.btn-post 
+  float: right
+  font-size: 12px
+  text-transform: uppercase
+  font-weight: 600
+  cursor: pointer
+  border: none
+  background: $blue
+  border-radius: 4px
+  padding: 4px 20px  
+  color: white
+
+.btn-post:hover
+  background: rgb(244, 78, 78)
+
 </style>
 

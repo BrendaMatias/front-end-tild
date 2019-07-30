@@ -6,6 +6,7 @@
           <img v-if="post.image" :src="post.image" :alt="post.title" />
         </router-link>
         <div class="content">
+          <input type="title" name="title" id="title" v-model="post.title" class="title"  />
           <h2 class="title">{{post.title}}</h2>
           <slot></slot>
         </div>
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import { mapFields } from "@/helpers.js";
 export default {
   name: "PostItem",
   props: ["post"]
