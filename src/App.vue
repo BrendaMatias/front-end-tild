@@ -23,5 +23,5 @@ export default {
 
 .container 
   display: grid
-  margin: 80px 0 50px 0
+  margin: 0 0 50px 0
 </style>

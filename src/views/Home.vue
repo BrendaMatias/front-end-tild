@@ -11,7 +11,6 @@
         <LoadingData v-if="loading" />
         <div class="grid" v-else>
           <div v-for="post in posts">
-            <router-link class="btn-post" :to="{name: 'post', params: {id: post.id}}">Read More</router-link>
             <ul class="posts">
               <router-link :to="{name: 'post', params: {id: post.id}}">
                 <li class="title">{{ post.title }}</li>
@@ -27,6 +26,7 @@
                 <li class="content">{{ post.content }}</li>
               </div>
             </ul>
+            <router-link class="btn-post" :to="{name: 'post', params: {id: post.id}}">Read More</router-link>
           </div>
         </div>
       </div>
@@ -95,12 +95,12 @@ $blue: #00b8e4
 section
   margin: 0 auto
   align-itens: center
-
 .home
   display: grid
   grid-template-columns: 700px 340px
   grid-gap: 30px
 .grid
+  margin-top: 80px
   max-width: 600px
 img 
   width: 100%
@@ -127,7 +127,7 @@ span
   color: $blue
 .created_at
   color: #777
-  padding: 25px
+  padding: 5px 0 25px 0
   float: center
   font-size: 11px
   font-weight: 600
@@ -137,21 +137,23 @@ span
   width: 100px
 
 .about
-  padding: 0 35px
+  background: $blue
+  padding: 130px 35px
   line-height: 20px
   text-align: center
   align-itens: center
   max-width: 300px
-  max-height: 340px
+  max-height: 480px
 .about h4 
   margin-top: 10px
   padding: 5px
   font-size: 16px
-  color: $blue
-  border-bottom: 2px solid $blue
+  color: white
+  border-bottom: 2px solid white
 .about h5
   margin-top: 12px
   font-size: 12px
+  color: white
 .user-image
   margin: auto
   width: 100px
@@ -168,7 +170,6 @@ span
   line-height: 1.5
 
 .btn-post 
-  float: right
   font-size: 12px
   text-transform: uppercase
   font-weight: 600
