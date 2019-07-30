@@ -1,30 +1,42 @@
 <template>
   <section>
     <div class="home">
-    <div class="posts">
-      <LoadingData v-if="loading" />
-      <div class="grid" v-else>
-        <ul v-for="post in posts" class="posts">
-          <router-link :to="{name: 'post', params: {id: post.id}}"><li class="title">{{ post.title }}</li></router-link>
-          <li class="img">
-            <img :src="post.image" />
-          </li>
-          <div class="divContent">
-            <li class="content">{{ post.content }}</li>
-          </div>
-          <li class="created_at"><span>by Ian Somerhalder</span> - Recife {{ post.created_at }}</li>
-        </ul>
+      <div class="posts">
+        <div class="no-have-posts">
+          <p v-if="noHavePosts" class="loading">You don't have posts :(<br/>Add a new post to the menu.</p>
+        </div>
+        <LoadingData v-if="loading" />
+        <div class="grid" v-else>
+          <ul v-for="post in posts" class="posts">
+            <router-link :to="{name: 'post', params: {id: post.id}}">
+              <li class="title">{{ post.title }}</li>
+            </router-link>
+            <li class="img">
+              <img :src="post.image" />
+            </li>
+            <div class="divContent">
+              <li class="content">{{ post.content }}</li>
+            </div>
+            <li class="created_at">
+              <span>by Ian Somerhalder</span>
+              - Recife {{ post.created_at }}
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="about"> 
-      <div class="user-image">
-        <img src="https://s-media-cache-ak0.pinimg.com/736x/92/80/c1/9280c111e34752405eb524d4ed0750e6--ian-somerholder-beautiful-men.jpg">
+      <div class="about">
+        <div class="user-image">
+          <img
+            src="https://s-media-cache-ak0.pinimg.com/736x/92/80/c1/9280c111e34752405eb524d4ed0750e6--ian-somerholder-beautiful-men.jpg"
+          />
+        </div>
+        <h4>{{name}}</h4>
+        <h5>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        </h5>
       </div>
-      <h4>{{name}}</h4>
-      <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-          when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h5>
-    </div>
     </div>
   </section>
 </template>
@@ -41,7 +53,8 @@ export default {
   data() {
     return {
       posts: null,
-      loading: true
+      loading: true,
+      noHavePosts: false
     };
   },
   methods: {
@@ -49,6 +62,9 @@ export default {
       this.produtos = null;
       this.posts = this.$store.state.user.posts;
       console.log(this.posts);
+      if (this.posts.length <= 0) {
+        this.noHavePosts = true;
+      }
       this.loading = false;
     }
   },
@@ -140,5 +156,9 @@ span
 .user-image img
   width: 100%
 
+.no-have-posts p
+  text-align: center
+  font-size: 28px
+  line-height: 1.5
 </style>
 

@@ -1,14 +1,18 @@
 <template>
-  <div class="post">
-    <router-link class="post-img" :to="{name: 'post', params: {id: post.id}}">
-      <img v-if="post.image" :src="post.image" :alt="post.title" />
-    </router-link>
-    <div class="content">
-      <h2 class="title">{{post.title}}</h2>
-      <slot></slot>
+  <section>
+    <div class="posts">
+      <div class="post">
+        <router-link class="post-img" :to="{name: 'post', params: {id: post.id}}">
+          <img v-if="post.image" :src="post.image" :alt="post.title" />
+        </router-link>
+        <div class="content">
+          <h2 class="title">{{post.title}}</h2>
+          <slot></slot>
+        </div>
+      </div>
       <h5 class="created_at">Recife, {{post.created_at}}</h5>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -20,6 +24,12 @@ export default {
 
 <style lang="sass" scoped>
 $blue: #00b8e4
+section
+  
+.posts
+  padding: 10px
+  border: 1px solid aliceblue
+  margin-bottom: 40px
 img 
   width: 100%
   
@@ -32,10 +42,8 @@ img
   display: grid
   grid-template-columns: minmax(100px, 200px) 1fr
   grid-gap: 20px
-  margin-bottom: 40px
   position: relative
   padding-right: 20px
-
 
 @media screen and (max-width: 500px) 
   .post 

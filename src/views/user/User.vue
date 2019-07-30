@@ -63,8 +63,7 @@ $blue: #00b8e4
   border-radius: 4px
 
 .sidenav a.router-link-exact-active,
-.sidenav a:hover,
-.sidenav button:hover 
+.sidenav a:hover
   background: rgba($blue, 0.9)
   color: #fff
 
@@ -74,6 +73,9 @@ $blue: #00b8e4
   width: 100%
   text-align: center
   cursor: pointer
-  background: rgba($blue, 0.4)
+  background: rgba(244, 78, 78, 1)
   color: rgba(255,255,255, 0.8)
+
+.sidenav button:hover 
+  background: rgb(217, 79, 79)
 </style>

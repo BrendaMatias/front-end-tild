@@ -55,8 +55,8 @@ export default {
 <style lang="sass" scoped>
 $blue: #00b8e4
 form 
+  justify-content: center
   display: grid
-
 .add-post 
   max-width: 800px
   margin: 0 auto
