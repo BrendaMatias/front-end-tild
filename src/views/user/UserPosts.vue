@@ -1,15 +1,15 @@
 <template>
   <section>
     <h2>Your posts</h2>
-    <p v-if="noHavePosts" class="loading">Não tem itens...</p>
+    <p v-if="noHavePosts" class="loading">You don't have posts.</p>
     <LoadingData v-if="loading" />
     <transition-group v-else name="list" tag="ul">
-      <li v-for="(post, index) in userPosts" :key="index">
+      <ul v-for="(post, index) in userPosts" :key="index">
         <PostItem :post="post">
           <p>{{post.content}}</p>
           <button @click="deletePost(post.id)" class="delete">Delete</button>
         </PostItem>
-      </li>
+      </ul>
     </transition-group>
   </section>
 </template>
@@ -72,14 +72,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
+
 section 
-  width: 630px
+  width: 800px
+  margin: 0 auto
 h2  
     text-align: center
     margin-bottom: 20px
     font-weight: 600
     padding-bottom: 15px
-    border-bottom: 2px solid rgba(255, 51, 102, 0.9)
+    border-bottom: 2px solid $blue
 
 .list-enter,
 .list-leave-to 
@@ -101,7 +104,7 @@ h2
     right: 0px
     cursor: pointer
     border: none
-    background: rgba(255, 51, 102, 0.9)
+    background: rgba($blue, 0.9)
     border-radius: 10px
     padding: 3px 20px  
     border: 2px solid transparent
@@ -109,10 +112,10 @@ h2
 .delete:hover
     background: white
     color: black
-    border: 2px solid rgba(255, 51, 102, 0.9)
+    border: 2px solid rgba($blue, 0.9)
 
 .loading 
-  width: 630px
+  width: 800px
   font-size: 30px
   text-align: center
   margin-top: 60px

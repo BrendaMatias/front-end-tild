@@ -4,7 +4,6 @@
     <div class="container">
       <router-view />
     </div>
-    <TheFooter />
   </div>
 </template>
 <script>

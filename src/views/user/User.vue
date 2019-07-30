@@ -36,11 +36,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
+
 .user 
   display: grid
-  grid-template-columns: minmax(140px, 200px) 1fr
-  max-width: 900px
-  margin: 40px auto
+  grid-template-columns: 300px auto
   grid-gap: 30px
   padding: 20px
 
@@ -65,7 +65,7 @@ export default {
 .sidenav a.router-link-exact-active,
 .sidenav a:hover,
 .sidenav button:hover 
-  background: rgba(255, 51, 102, 0.9)
+  background: rgba($blue, 0.9)
   color: #fff
 
 
@@ -74,6 +74,6 @@ export default {
   width: 100%
   text-align: center
   cursor: pointer
-  background: rgba(255, 51, 102, 0.4)
+  background: rgba($blue, 0.4)
   color: rgba(255,255,255, 0.8)
 </style>

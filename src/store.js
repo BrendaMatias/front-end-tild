@@ -31,7 +31,7 @@ export default new Vuex.Store({
         }
       ]
     },
-    posts: [
+    post: [
       {
         id: "",
         title: "",
@@ -39,9 +39,19 @@ export default new Vuex.Store({
         image: "",
         user_id: "",
         created_at: "",
-        updated_at: ""
+        comments: [
+          {
+            id: "",
+            title: "",
+            content: "",
+            post_id: "",
+            user_id: "",
+            created_at: ""
+          }
+        ]
       }
-    ]
+    ],
+    
   },
   mutations: {
     UPDATE_LOGIN(state, payload) {
@@ -53,8 +63,11 @@ export default new Vuex.Store({
     UPDATE_USER(state, payload) {
       state.user = Object.assign(state.user, payload);
     },
-    UPDATE_POSTS(state, payload) {
-      state.posts = payload;
+    UPDATE_POST(state, payload) {
+      state.post = payload;
+    },
+    UPDATE_COMMENTS(state, payload) {
+      state.comments = payload;
     }
   },
   actions: {
@@ -122,9 +135,14 @@ export default new Vuex.Store({
       window.localStorage.removeItem("token");
       context.commit("UPDATE_LOGIN", false);
     },
-    getPosts(context) {
-      api.get(`/posts`).then(response => {
-        context.commit("UPDATE_POSTS", response.data);
+    getPost(context, payload) {
+      api.get(`/posts/${payload}`).then(response => {
+        context.commit("UPDATE_POST", response.data);
+      });
+    },
+    getComments(context, payload) {
+      api.get(`/posts/${payload}/comments`).then(response => {
+        context.commit("UPDATE_COMMENTS", response.data);
       });
     }
   }

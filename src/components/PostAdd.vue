@@ -33,7 +33,7 @@ export default {
         image: "https://lorempixel.com/640/480/?20271",
         user_id: this.$store.state.user.id
       },
-      successes: "[]"
+      successes: []
     };
   },
   methods: {
@@ -46,13 +46,14 @@ export default {
 
       button.removeAttribute("disabled");
       button.value = "Add Post";
-      this.successes.push("Data updated successfully.");
+      this.successes.push("Post successfully added!");
     }
   }
 };
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
 form 
   display: grid
 
@@ -84,7 +85,7 @@ textarea
   height: 100px
 
 .btn 
-  background: rgba(255, 51, 102, 0.7)
+  background: rgba($blue, 0.7)
   border-radius: 3px
   border: 2px solid transparent
   color: white
@@ -95,6 +96,6 @@ textarea
   padding: 6px 0
 
 .btn:hover 
-  background: rgba(255, 51, 102, 0.9)
+  background: rgba($blue, 0.9)
 
 </style>

@@ -17,12 +17,10 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: Home,
+      meta: {
+        login: true,
+      },
     },
     {
       path: '/login',
@@ -33,7 +31,7 @@ const router = new Router({
       path: "/post/:id",
       name: "post",
       component: Post,
-      props: true
+      props: true,
     },
     {
       path: '/user',

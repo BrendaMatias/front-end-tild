@@ -1,7 +1,9 @@
 <template>
   <section class="add-post">
     <h2>Add post</h2>
-    <PostsAdd />
+    <div>
+      <PostsAdd />
+    </div>
   </section>
 </template>
 
@@ -40,54 +42,23 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
+section
+  width: 800px
+  margin: 0 auto
 form 
   display: grid
 
 .add-post 
-  max-width: 800px
-  margin: 0 auto
-
+  align-itens: center
 .add-post 
   div
     padding: 30px
-
-label 
-  font-size: 14px
-  color: #24292e
-  line-height: 1.5
-  font-weight: 600
-
-input, textarea
-  width: 570px
-  margin: 5px 0 20px 0
-  border: 1px solid #d1d5da
-  border-radius: 3px
-  font-size: 14px
-  line-height: 20px
-  padding: 6px 8px
-
-textarea
-  resize: none
-  height: 100px
-
-.btn 
-  background: rgba(255, 51, 102, 0.7)
-  border-radius: 3px
-  border: 2px solid transparent
-  color: white
-  cursor: pointer
-  font-size: 14px
-  font-weight: 600
-  line-height: 20px
-  padding: 6px 0
-
-.btn:hover 
-  background: rgba(255, 51, 102, 0.9)
 
 h2  
   text-align: center
   margin-bottom: 20px
   font-weight: 600
   padding-bottom: 15px
-  border-bottom: 2px solid rgba(255, 51, 102, 0.9)
+  border-bottom: 2px solid $blue
 </style>

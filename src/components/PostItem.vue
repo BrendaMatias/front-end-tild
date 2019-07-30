@@ -19,6 +19,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
 img 
   width: 100%
   
@@ -53,7 +54,7 @@ img
   line-height: 1.5
 
 .created_at
-  color: rgba(255, 51, 102, 0.9)
+  color: rgba($blue, 0.9)
   text-align: right
   font-size: 11px
   font-weight: 600

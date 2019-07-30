@@ -66,6 +66,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
 form 
   display: grid
 
@@ -82,7 +83,7 @@ h2
     margin-bottom: 20px
     font-weight: 600
     padding-bottom: 15px
-    border-bottom: 2px solid rgba(255, 51, 102, 0.9)
+    border-bottom: 2px solid $blue
 label 
   font-size: 14px
   color: #24292e
@@ -105,7 +106,7 @@ input
   line-height: 20px
   padding: 6px 8px
 button 
-  background: rgba(255, 51, 102, 0.7)
+  background: rgba($blue, 0.7)
   border-radius: 3px
   border: 2px solid transparent
   color: white
@@ -116,6 +117,6 @@ button
   padding: 6px 0
 
 button:hover 
-  background: rgba(255, 51, 102, 0.9)
+  background: rgba($blue, 0.9)
 
 </style>

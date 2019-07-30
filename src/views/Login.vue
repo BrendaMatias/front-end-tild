@@ -1,7 +1,7 @@
 <template>
   <section class="login">
     <h1>Login</h1>
-    <div>
+    <div class="login-body">
       <form>
         <label for="email">Email Adress</label>
         <input type="email" name="email" id="email" v-model="login.email" required />
@@ -10,7 +10,8 @@
           <a href="/" target="_blank" class="forgetPassword">Forgot password?</a>
         </label>
         <input type="password" name="password" id="password" v-model="login.password" />
-        <button @click.prevent="logar">Sign in</button>
+        <button v-if="!loading" @click.prevent="logar">Sign in</button>
+        <LoadingData v-else class="loading" />
       </form>
       <SignUp />
     </div>
@@ -19,11 +20,13 @@
 
 <script>
 import SignUp from "@/components/SignUp.vue";
+import LoadingData from "../components/LoadingData.vue";
 
 export default {
   name: "Login",
   components: {
-    SignUp
+    SignUp,
+    LoadingData
   },
   data() {
     return {
@@ -31,16 +34,14 @@ export default {
         email: "",
         password: ""
       },
-      erros: []
+      erros: [],
+      loading: false
     };
   },
   methods: {
     async logar() {
       this.erros = [];
-      /*const button = event.currentTarget;
-      console.log(button);
-      button.value = "Loading...";
-      button.setAttribute("disabled", "");*/
+      this.loading = true;
       await this.$store.dispatch("getUser", this.login.email);
       if (this.$store.state.login) {
         this.$router.push({ name: "posts" });
@@ -51,6 +52,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$blue: #00b8e4
 
 form 
   display: grid
@@ -59,11 +61,10 @@ form
   max-width: 600px
   margin: 0 auto
 
-.login 
-  div
-    border: 1px solid #d1d5da
-    border-radius: 3px
-    padding: 30px
+.login-body
+  border: 1px solid #d1d5da
+  border-radius: 3px
+  padding: 30px
 
 h1 
   text-align: center
@@ -93,7 +94,7 @@ input
   line-height: 20px
   padding: 6px 8px
 button 
-  background: rgba(255, 51, 102, 0.7)
+  background: rgba($blue, 0.7)
   border-radius: 3px
   border: 2px solid transparent
   color: white
@@ -104,6 +105,19 @@ button
   padding: 6px 0
 
 button:hover 
-  background: rgba(255, 51, 102, 0.9)
+  background: $blue
+
+.loader 
+  margin: 0 auto
+  border: 8px solid #f3f3f3
+  border-top: 8px solid #00b8e4
+  border-radius: 50%
+  width: 70px
+  height: 70px
+  animation: spin 2s linear infinite
+
+@keyframes spin 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 
 </style>

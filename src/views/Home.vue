@@ -1,19 +1,32 @@
 <template>
-  <div class="home">
-    <LoadingData v-if="loading" />
-    <div class="grid" v-else>
-      <ul v-for="post in posts" class="posts">
-        <li class="img">
-          <img :src="post.image" />
-        </li>
-        <div class="divContent">
-          <li class="created_at">Recife, {{ post.created_at }}</li>
-          <li class="title">{{ post.title }}</li>
-          <li class="content">{{ post.content }}</li>
-        </div>
-      </ul>
+  <section>
+    <div class="home">
+    <div class="posts">
+      <LoadingData v-if="loading" />
+      <div class="grid" v-else>
+        <ul v-for="post in posts" class="posts">
+          <router-link :to="{name: 'post', params: {id: post.id}}"><li class="title">{{ post.title }}</li></router-link>
+          <li class="img">
+            <img :src="post.image" />
+          </li>
+          <div class="divContent">
+            <li class="content">{{ post.content }}</li>
+          </div>
+          <li class="created_at"><span>by Ian Somerhalder</span> - Recife {{ post.created_at }}</li>
+        </ul>
+      </div>
     </div>
-  </div>
+    <div class="about"> 
+      <div class="user-image">
+        <img src="https://s-media-cache-ak0.pinimg.com/736x/92/80/c1/9280c111e34752405eb524d4ed0750e6--ian-somerholder-beautiful-men.jpg">
+      </div>
+      <h4>{{name}}</h4>
+      <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h5>
+    </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -34,10 +47,14 @@ export default {
   methods: {
     getPosts() {
       this.produtos = null;
-      api.get(`/posts`).then(response => {
-        this.posts = response.data.data;
-        this.loading = false;
-      });
+      this.posts = this.$store.state.user.posts;
+      console.log(this.posts);
+      this.loading = false;
+    }
+  },
+  computed: {
+    name() {
+      return this.$store.state.user.name.replace(/ .*/, "");
     }
   },
   watch: {
@@ -50,41 +67,78 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
+$blue: #00b8e4
+
+section
+  margin: 0 auto
+  align-itens: center
+
+.home
+  display: grid
+  grid-template-columns: 700px 340px
+  grid-gap: 30px
 .grid
-	max-width: 600px
-	margin: 0 auto
+  max-width: 600px
 img 
   width: 100%
 ul
   background: #fff
-  margin-bottom: 60px
+  margin-bottom: 80px
 
 .divContent
   padding: 20px 70px
 
 .title
   cursor: pointer
-  font-size: 20px
-  color: rgb(64, 64, 66)
+  font-size: 22px
+  color: #000
   text-transform: uppercase
-  margin: 20px 0 30px 0
+  margin-bottom: 30px
+  font-weight: 600
 .content
   font-size: 14px
   color: rgb(177, 177, 177)
   line-height: 1.5
   margin-bottom: 15px
-  
+span
+  color: $blue
 .created_at
-  color: rgba(255, 51, 102, 0.9)
+  color: #777
+  padding: 25px
   float: center
   font-size: 11px
-  text-transform: uppercase
   font-weight: 600
 
 .gif
   margin: 40px auto 100px auto
   width: 100px
 
+.about
+  padding: 0 35px
+  line-height: 20px
+  text-align: center
+  align-itens: center
+  max-width: 300px
+  max-height: 340px
+.about h4 
+  margin-top: 10px
+  padding: 5px
+  font-size: 16px
+  color: $blue
+  border-bottom: 2px solid $blue
+.about h5
+  margin-top: 12px
+  font-size: 12px
+.user-image
+  margin: auto
+  width: 100px
+  height: 100px
+  border-radius: 50%
+  overflow: hidden
+
+.user-image img
+  width: 100%
 
 </style>
 
