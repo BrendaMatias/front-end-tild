@@ -16,6 +16,8 @@
           New to Blog?
           <router-link to="/signup" class="login">Create an account.</router-link>
         </p>
+        <SucessNotification :successes="successes" />
+        <ErroNotification :erros="erros" />
       </form>
     </div>
   </section>
@@ -37,16 +39,30 @@ export default {
         password: ""
       },
       erros: [],
+      successes: [],
       loading: false
     };
   },
   methods: {
     async logar() {
       this.erros = [];
-      this.loading = true;
-      await this.$store.dispatch("getUser", this.login.email);
-      if (this.$store.state.login) {
-        this.$router.push({ name: "posts" });
+      if (this.login.email == "") {
+        this.erros.push("Enter your email.");
+      } else if(this.login.password == "") {
+        this.erros.push("Enter your password.");
+      } else {
+        this.loading = true;
+        this.$store
+          .dispatch("getUser", this.login.email)
+          .then(() => {
+            if (this.$store.state.login) {
+              this.$router.push({ name: "posts" });
+            }
+          })
+          .catch(error => {
+            this.loading = false;
+            this.erros.push("An error has occurred.<br/>Try again!");
+          });
       }
     }
   }

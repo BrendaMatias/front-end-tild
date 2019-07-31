@@ -10,14 +10,14 @@
             type="title"
             name="title"
             id="title"
-            v-model="post.title"
+            :value="post.title"
             placeholder="Enter title"
             class="title"
           />
           <textarea
             id="content"
             name="content"
-            v-model="post.content"
+            :value="post.content"
             placeholder="Enter text"
             class="content"
           ></textarea>
@@ -31,9 +31,10 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
+
 export default {
   name: "PostItem",
-  props: ["post"]
+  props: ["post"],
 };
 </script>
 

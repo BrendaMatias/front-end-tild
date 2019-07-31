@@ -5,13 +5,11 @@
     <LoadingData v-if="loading" />
     <transition-group v-else name="list" tag="ul">
       <ul v-for="(post, index) in userPosts" :key="index">
-        <PostItem :post="post">
+        <PostItem :post="post" :key="post.id">
           <button @click="deletePost(post.id)" class="delete">Delete</button>
-          <button @click="updatePost(post.id)" class="update">Update</button>
+          <button @click="updatePost(post.id, post.title, post.content)" class="update">Update</button>
         </PostItem>
       </ul>
-      <SucessNotification :successes="successes" />
-      <ErroNotification :erros="erros" />
     </transition-group>
   </section>
 </template>
@@ -33,8 +31,7 @@ export default {
       userPosts: this.$store.state.user.posts,
       loading: false,
       noHavePosts: false,
-      erros: [],
-      successes: []
+      erros: []
     };
   },
   methods: {
@@ -53,13 +50,17 @@ export default {
           });
       }
     },
-    updatePost(id) {
-      this.loading = true;
+    updatePost(id, title, content) {
+      /*this.loading = true;*/
       this.erros = [];
       var body = {
-        title: this.userPosts[id].post.title,
-        content: this.userPosts[id].post.content
+        title: title,
+        content: content
       };
+      this.erros.push(
+        "An error occured while trying to update the post.<br/>Try again!"
+      );
+      /*
       api
         .put(`/posts/${id}/`, body)
         .then(() => {
@@ -69,7 +70,7 @@ export default {
           this.erros.push(
             "An error occured while trying to update the post.<br/>Try again!"
           );
-        });
+        });*/
       this.loading = false;
     },
     async getPost() {

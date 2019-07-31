@@ -14,16 +14,6 @@
           </li>
           <li class="content">{{ post.content }}</li>
         </ul>
-        <div class="comment">
-          <ul v-for="comment in comments">
-            <li class="title">{{ comment.title }}</li>
-            <li class="content">{{ comment.content }}</li>
-            <li class="created_at">
-              <span>by Ian Somerhalder</span>
-              - Recife {{ comment.created_at }}
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
@@ -59,8 +49,6 @@ export default {
 
       const confirm = window.confirm("Do you want to remove this comment?");
       if (confirm) {
-        console.log(this.id);
-        console.log(id);
         api
           .delete(`/posts/${this.id}/comments/${id}`)
           .then(() => {
@@ -72,6 +60,11 @@ export default {
             console.log(error.reponse);
           });
       }
+    }
+  },
+  watch: {
+    getPost() {
+      this.getPost();
     }
   },
   created() {

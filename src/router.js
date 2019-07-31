@@ -68,7 +68,6 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.login)) {
-    console.log(window.localStorage.token);
     if(!window.localStorage.token) {
       next('/login');
     } else {

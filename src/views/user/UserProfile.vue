@@ -1,5 +1,5 @@
 <template>
-  <section class="login">
+  <section class="edit-profile">
     <h2>Edit Profile</h2>
     <div>
       <form>
@@ -10,8 +10,8 @@
         <label for="age">Age</label>
         <input type="number" name="age" id="age" v-model="age" />
         <button @click.prevent="updateUser">Update Profile</button>
-        <SucessNotification :successes="successes"/>
-        <ErroNotification :erros="erros"/>
+        <SucessNotification :successes="successes" />
+        <ErroNotification :erros="erros" />
       </form>
     </div>
   </section>
@@ -25,40 +25,35 @@ export default {
   name: "UserProfile",
   computed: {
     ...mapFields({
-      fields: [
-        "name",
-        "email",
-        "age",
-      ],
+      fields: ["name", "email", "age"],
       base: "user",
       mutation: "UPDATE_USER"
-    }),
+    })
   },
   data() {
     return {
-      login: {
-        email: "",
-        password: ""
-      },
       erros: [],
       successes: []
     };
   },
   methods: {
-      updateUser() {
+    updateUser() {
       this.erros = [];
-      var idUser = this.$store.state.user.id; 
+      var idUser = this.$store.state.user.id;
       var body = {
         name: this.$store.state.user.name,
         age: this.$store.state.user.age,
         email: this.$store.state.user.email
-      }
-      api.put(`/users/${this.$store.state.user.id}/`, body)
+      };
+      api
+        .put(`/users/${this.$store.state.user.id}/`, body)
         .then(() => {
           this.successes.push("Data updated successfully.");
         })
         .catch(error => {
-          this.erros.push("An error occured while trying to update the user.<br/>Try again!");
+          this.erros.push(
+            "An error occured while trying to update the user.<br/>Try again!"
+          );
         });
     }
   }
@@ -71,11 +66,11 @@ export default {
 form 
   display: grid
 
-.login 
+.edit-profile 
   max-width: 800px
   margin: 0 auto
 
-.login 
+.edit-profile 
   div
     padding: 30px
 

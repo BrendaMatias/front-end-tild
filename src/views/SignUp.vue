@@ -21,6 +21,7 @@
         <LoadingData v-else class="loading" />
       </form>
       <SucessNotification :successes="successes" />
+      <ErroNotification :erros="erros" />
     </div>
   </section>
 </template>
@@ -29,14 +30,13 @@
 import { api } from "@/services.js";
 import { mapFields } from "@/helpers.js";
 import LoadingData from "../components/LoadingData.vue";
-import SucessNotification from "@/components/SucessNotification.vue";
 
 export default {
   name: "SignUp",
   components: {
     LoadingData
   },
-    computed: {
+  computed: {
     ...mapFields({
       fields: ["name", "email", "password", "age"],
       base: "user",
@@ -53,29 +53,48 @@ export default {
         password: "",
         age: ""
       },
+      erros: [],
       successes: []
     };
   },
   methods: {
     async createUser() {
-      this.loading = true;
-      console.log(this.user);
-      try {
-        await api.post("/users/", this.user);
-        await this.$store.dispatch("getUsuario", this.user.email).then(() => {
-          this.loading = false;
-          this.successes.push("User successfully registered!");
-        }).catch(error => {
-          this.erros.push("An error occured while trying to register the user.<br/>Try again!");
-        });
-        this.user = {
+      this.erros = [];
+      if (this.user.name == "") {
+        this.erros.push("Enter your name.");
+      } else if (this.user.email == "") {
+        this.erros.push("Enter your email.");
+      } else if (this.user.password == "") {
+        this.erros.push("Enter your password.");
+      } else if (this.user.age == "") {
+        this.erros.push("Enter your age.");
+      } else {
+        this.loading = true;
+        console.log(this.user);
+        try {
+          await api.post("/users/", this.user);
+          await this.$store
+            .dispatch("getUsuario", this.user.email)
+            .then(() => {
+              this.loading = false;
+              this.successes.push("User successfully registered!");
+            })
+            .catch(error => {
+              this.erros.push(
+                "An error occured while trying to register the user.<br/>Try again!"
+              );
+            });
+          this.user = {
             name: "",
             email: "",
             password: "",
             age: ""
+          };
+        } catch (error) {
+          this.erros.push(
+            "An error occured while trying to register the user.<br/>Try again!"
+          );
         }
-      } catch (error) {
-        this.erros.push("An error occured while trying to register the user.<br/>Try again!");
       }
     }
   }

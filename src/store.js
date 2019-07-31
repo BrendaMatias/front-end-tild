@@ -90,7 +90,6 @@ export default new Vuex.Store({
               .get(`/users/${this.state.users.data[i2].id}`)
               .then(response => {
                 context.commit("UPDATE_USER", response.data);
-                console.log(this.state.user.posts);
               });
             context.commit("UPDATE_LOGIN", true);
             window.localStorage.token = `Bearer ${this.state.user.id}`;
@@ -98,15 +97,6 @@ export default new Vuex.Store({
           }
         }
       }
-    },
-    getUserLogado(context, payload) {
-      api.get(`/users/${payload}`).then(response => {
-        context.commit("UPDATE_USER", response.data);
-        console.log(this.state.user);
-      });
-    },
-    createUser(context) {
-      return api.post("/users/");
     },
     signOut(context) {
       context.commit("UPDATE_USERS", {
