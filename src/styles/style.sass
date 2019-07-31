@@ -1,0 +1,88 @@
+@import '@/styles/_reset.sass'
+@import '@/styles/_variables.sass'
+
+* 
+    box-sizing: border-box
+
+body 
+    font-family: 'Montserrat', sans-serif
+    font-style: normal
+
+button,
+a,
+span 
+    transition: all 0.3s
+
+/* Notificação de erros ou sucesso */ 
+
+.sucess, .erro
+  margin: 30px auto 0 auto
+
+.sucess li, .erro li
+  font-size: 16px
+  line-height: 1.5
+  font-weight: 600
+  text-align: center
+
+/* Botões */ 
+
+.btn, button, .sidenav a
+  border: none
+  border-radius: 3px
+  color: white
+  cursor: pointer
+  font-size: 14px
+  font-weight: 600
+  line-height: 20px
+  padding: 8px 0
+
+/* Input, Textarea */ 
+
+input, textarea
+  margin: 5px 0 20px 0
+  border: 1px solid #d1d5da
+  border-radius: 3px
+  font-size: 14px
+  line-height: 20px
+  padding: 6px 8px
+
+textarea
+  resize: none
+
+/* Label */
+
+label 
+  font-size: 14px
+  color: #24292e
+  line-height: 1.5
+  font-weight: 600
+
+/* Posts */
+
+.title, .title a h2
+  text-transform: uppercase
+
+.content
+  font-size: 14px
+  color: rgb(177, 177, 177)
+  line-height: 1.5
+
+.created_at
+  font-size: 11px
+  font-weight: 600
+
+a
+  color: #0366d6
+
+
+/* Login e SignUp */ 
+
+.login, .signUp
+  max-width: 600px
+  margin: 0 auto
+  margin-top: 80px
+
+.login-body, .signup-body
+  border: 1px solid #d1d5da
+  border-radius: 3px
+  padding: 30px

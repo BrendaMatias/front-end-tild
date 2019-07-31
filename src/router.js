@@ -1,25 +1,81 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Login from './views/Login.vue'
+import SignUp from './views/SignUp.vue'
+import User from './views/user/User.vue'
+import UserPosts from './views/user/UserPosts.vue'
+import UserProfile from './views/user/UserProfile.vue'
+import UserAddPost from './views/user/UserAddPost.vue'
+import Post from './views/Post.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        login: true,
+      },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/login',
+      name: 'login',
+      component: Login
+    },    
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp
+    },
+    {
+      path: "/post/:id",
+      name: "post",
+      component: Post,
+      props: true,
+    },
+    {
+      path: '/user',
+      component: User,
+      meta: {
+        login: true,
+      },
+      children: [
+        {
+          path: "posts",
+          name: "posts",
+          component: UserPosts
+        },
+        {
+          path: "addposts",
+          name: "add-posts",
+          component: UserAddPost
+        },
+        {
+          path: "profile",
+          name: "user-profile",
+          component: UserProfile
+        }
+      ]
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.login)) {
+    if(!window.localStorage.token) {
+      next('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
